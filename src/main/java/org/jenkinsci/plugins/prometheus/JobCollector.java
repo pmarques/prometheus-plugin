@@ -173,6 +173,12 @@ public class JobCollector extends Collector {
 
     protected void appendJobMetrics(Job job) {
         String[] labelValueArray = {job.getFullName()};
+
+        if (!job.isBuildable()) {
+            logger.debug("job [{}] is disabled", job.getFullName());
+            return;
+        }
+
         Run run = job.getLastBuild();
         // Never built
         if (run == null) {
