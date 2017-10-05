@@ -218,7 +218,20 @@ public class JobCollector extends Collector {
         successfulSummary.labels(labelValueArray).set(ordinal < 2 ? 1 : 0);
         durationSummary.labels(labelValueArray).set(duration);
 
+        int processNJobs = PrometheusConfiguration.get().getAggregateNJobsBuilds();
+        int jobIndex = 0;
+
+        if (0 == processNJobs) {
+            logger.debug("job [{}] skiping runs aggregations", job.getFullName());
+            return;
+        }
+
         while (run != null) {
+            if ((-1 == processNJobs) && (++jobIndex > processNJobs)) {
+                run = null;
+                continue;
+            }
+
             logger.debug("getting metrics for run [{}] from job [{}]", run.getNumber(), job.getName());
             if (Runs.includeBuildInMetrics(run)) {
                 logger.debug("getting build duration for run [{}] from job [{}]", run.getNumber(), job.getName());

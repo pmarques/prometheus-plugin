@@ -40,4 +40,12 @@
       Count the duration of aborted builds.
     </p>
   </div>
+  <div>
+    <p>
+      Get aggregated metrics from the past n runs per Job.
+      -1 All runs
+      0  Disable
+      >1 Aggregate the last N runs
+    </p>
+  </div>
 </j:jelly>

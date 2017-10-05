@@ -33,6 +33,7 @@ public class PrometheusConfiguration extends GlobalConfiguration {
     private boolean countFailedBuilds = true;
     private boolean countNotBuiltBuilds = true;
     private boolean countAbortedBuilds = true;
+    private int aggregateNJobsBuilds = 0;
     
 
     public PrometheusConfiguration() {
@@ -59,6 +60,7 @@ public class PrometheusConfiguration extends GlobalConfiguration {
         countFailedBuilds = json.getBoolean("countFailedBuilds");
         countNotBuiltBuilds = json.getBoolean("countNotBuiltBuilds");
         countAbortedBuilds = json.getBoolean("countAbortedBuilds");
+        aggregateNJobsBuilds = json.getInt("aggregateNJobsBuilds");
         
         save();
         return super.configure(req, json);
@@ -128,6 +130,14 @@ public class PrometheusConfiguration extends GlobalConfiguration {
     
     void setCountAbortedBuilds(boolean countAbortedBuilds) {
         this.countAbortedBuilds = countAbortedBuilds;
+    }
+
+    public int getAggregateNJobsBuilds() {
+        return aggregateNJobsBuilds;
+    }
+
+    void setAggregateNJobsBuilds(int njobs) {
+        this.aggregateNJobsBuilds = njobs;
     }
 
     public String getUrlName() {

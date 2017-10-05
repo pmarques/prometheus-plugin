@@ -25,5 +25,8 @@
     <f:entry title="${%Count duration of aborted builds}" field="countAbortedBuilds">
       <f:checkbox/>
     </f:entry>
+    <f:entry title="${%Get aggregated metrics from the past n runs per Job}" field="aggregateNJobsBuilds">
+      <f:number min="-1" step="1"/>
+    </f:entry>
   </f:section>
 </j:jelly>
