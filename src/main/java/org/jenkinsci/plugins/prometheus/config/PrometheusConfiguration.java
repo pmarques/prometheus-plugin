@@ -34,7 +34,7 @@ public class PrometheusConfiguration extends GlobalConfiguration {
     private boolean countNotBuiltBuilds = true;
     private boolean countAbortedBuilds = true;
 
-    private boolean processingDisabledBuilds = true;
+    private boolean processingDisabledBuilds = false;
 
     public PrometheusConfiguration() {
         load();
